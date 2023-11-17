@@ -1,5 +1,6 @@
 package dev.yagofaran.springbootintroduction.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -36,6 +37,16 @@ public class FirstController {
     @PostMapping("methodWithHeaderList")
     public String methodWithHeaderList(@RequestHeader Map<String, String> headers) {
         return "Header list params: " + headers.entrySet();
+    }
+
+    @GetMapping("methodResponseEntity/{id}")
+    public ResponseEntity<Object> methodResponseEntity(@PathVariable long id) {
+        var user = new User("Yago Faran");
+
+        if(id > 5) {
+            return ResponseEntity.ok().body(user);
+        }
+        return ResponseEntity.badRequest().body("id is lower than 5");
     }
 
     record User(String username){}
