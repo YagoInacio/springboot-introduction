@@ -23,4 +23,11 @@ public class FirstController {
         return "Params mapped on query are " + allParams.entrySet();
     }
 
+    @PostMapping("methodWithBodyParams")
+    public String methodWithBodyParams(@RequestBody User user) {
+        return "Body params: " + user.username();
+    }
+
+    record User(String username){}
+
 }
