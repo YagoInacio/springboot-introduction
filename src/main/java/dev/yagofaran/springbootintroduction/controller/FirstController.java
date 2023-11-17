@@ -28,6 +28,16 @@ public class FirstController {
         return "Body params: " + user.username();
     }
 
+    @PostMapping("methodWithHeaders")
+    public String methodWithHeaders(@RequestHeader("name") String name) {
+        return "Header name param: " + name;
+    }
+
+    @PostMapping("methodWithHeaderList")
+    public String methodWithHeaderList(@RequestHeader Map<String, String> headers) {
+        return "Header list params: " + headers.entrySet();
+    }
+
     record User(String username){}
 
 }
